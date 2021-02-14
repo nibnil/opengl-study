@@ -11,7 +11,7 @@ GLubyte label[36] = {'J', 'a', 'n', 'F', 'e', 'b', 'M', 'a', 'r', 'A', 'p', 'r',
 void init(){
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glMatrixMode(GL_PROJECTION);
-    gluOrtho2D(0.0, 200.0, 0.0, 150.0);
+    gluOrtho2D(0.0, 200.0, 0.0, 150.0);  //2D视角
 }
 
 
@@ -21,18 +21,18 @@ void lineGraph(){
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0, 0.0, 1.0);
     glBegin(GL_LINE_STRIP);
-    for(k = 0; k < 12; k++){
-        glVertex2i(x + k*50, dataValue[k]);
+    for(k = 0; k < 12; k++){//描线
+        glVertex2i(x + k*50, dataValue[k]);  
     }
     glEnd();
     glColor3f(1.0, 0.0, 0.0);
-    for (k = 0; k < 12; k++){
+    for (k = 0; k < 12; k++){//描点
         glRasterPos2i(xRaster + k * 50, dataValue[k] - 4);
         glutBitmapCharacter(GLUT_BITMAP_9_BY_15, '*');
     }
     glColor3f(0.0, 0.0, 0.0);
     xRaster = 20;
-    for(month = 0; month<12; month++){
+    for(month = 0; month<12; month++){//底部坐标描述
         glRasterPos2i(xRaster, yRaster);
         for(k = 3*month; k < 3*month + 3; k++){
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, label[k]);
